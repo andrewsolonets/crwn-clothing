@@ -52,5 +52,11 @@
     "name": "Blue Snapback",
     "imageUrl": "https://i.ibb.co/X2VJP2W/blue-snapback.png",
     "price": 16
+  },
+  {
+    "id": 10,
+    "name": "Rainbow Leopard",
+    "imageUrl": "https://i.ibb.co/Tm5k0hd/rainbowleopard.jpg",
+    "price": 4
   }
 ]
