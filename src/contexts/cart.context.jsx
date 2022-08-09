@@ -5,7 +5,7 @@ const addCartItem = (cartItems, productToAdd) => {
   if (cartItems.includes(productToAdd)) {
     productToAdd.quantity++;
     const newCartItems = [...cartItems];
-    console.log(newCartItems);
+
     return newCartItems;
   } else {
     productToAdd.quantity = 1;
@@ -21,7 +21,7 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
   if (cartItemToRemove.quantity > 1) {
     cartItemToRemove.quantity--;
     const newCartItems = [...cartItems];
-    console.log(newCartItems);
+
     return newCartItems;
   } else if (cartItemToRemove.quantity === 1) {
     const newCartItems = cartItems.filter((cartItem) => {
