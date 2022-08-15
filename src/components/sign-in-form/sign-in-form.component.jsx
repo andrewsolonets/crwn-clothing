@@ -5,9 +5,14 @@ import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
+import { useDispatch } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from "../../store/user/user.action.js";
 
 const defaultFormFields = {
   email: "",
@@ -15,6 +20,7 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -22,27 +28,33 @@ const SignInForm = () => {
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
-  const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+  const signInWithGoogle = () => {
+    dispatch(googleSignInStart());
   };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
 
-    try {
-      await signInAuthUserWithEmailAndPassword(email, password);
-      resetFormFields();
-    } catch (err) {
-      switch (err.code) {
-        case "auth/wrong-password":
-          alert("incorrect password for email");
-          break;
-        case "auth/user-not-found":
-          alert("no user associated with this email");
-          break;
-        default:
-          console.log(err);
-      }
-    }
+  //   try {
+  //     await signInAuthUserWithEmailAndPassword(email, password);
+  //     resetFormFields();
+  //   } catch (err) {
+  //     switch (err.code) {
+  //       case "auth/wrong-password":
+  //         alert("incorrect password for email");
+  //         break;
+  //       case "auth/user-not-found":
+  //         alert("no user associated with this email");
+  //         break;
+  //       default:
+  //         console.log(err);
+  //     }
+  //   }
+  // };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(emailSignInStart(email, password));
+    resetFormFields();
   };
 
   const handleChange = (event) => {
