@@ -6,10 +6,9 @@ import { store, persistor } from "./store/store";
 import { stripePromise } from "./utils/stripe/stripe.utils";
 import { PersistGate } from "redux-persist/integration/react";
 import { Elements } from "@stripe/react-stripe-js";
+import { GlobalStyle } from "./global.styles";
 
 import App from "./App";
-
-import "./index.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,6 +17,7 @@ root.render(
       <PersistGate persistor={persistor}>
         <BrowserRouter>
           <Elements stripe={stripePromise}>
+            <GlobalStyle />
             <App />
           </Elements>
         </BrowserRouter>
